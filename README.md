@@ -27,6 +27,8 @@ public:
     virtual ~EchoTask();
 
     virtual void run();
+    
+    virtual void destroy();
 };
 
 }}
@@ -72,6 +74,12 @@ void EchoTask::run()
         debug("echo task socket closed by peer");
         handler->remove(socket);
     }
+}
+
+void EchoTask::destroy()
+{
+    debug("echo task destroy");
+    delete this;
 }
 ```
 ## Task Factory
