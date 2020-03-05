@@ -75,7 +75,7 @@ void EchoTask::run()
 }
 ```
 ## Task factory
-task/TaskFactory.cpp
+task/TaskFactory.h
 ```c++
 class TaskFactory
 {
