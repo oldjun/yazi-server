@@ -6,7 +6,7 @@ a c++ tcp server with epoll and thread pool. the demo show an echo server, you c
 |E-mail|oldjun@sina.com|
 |Wechat|chenjunping1024|
 
-## The echo task
+## The Echo Task
 task/EchoTask.h
 ```c++
 #pragma once
@@ -74,7 +74,7 @@ void EchoTask::run()
     }
 }
 ```
-## Task factory
+## Task Factory
 task/TaskFactory.h
 ```c++
 class TaskFactory
