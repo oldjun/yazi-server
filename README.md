@@ -27,7 +27,6 @@ public:
     virtual ~EchoTask();
 
     virtual void run();
-    virtual void destroy();
 };
 
 }}
@@ -36,14 +35,14 @@ public:
 task/EchoTask.cpp
 ```c++
 #include "EchoTask.h"
+using namespace yazi::task;
+
 #include "Logger.h"
 #include "Singleton.h"
-#include "SocketHandler.h"
-
 using namespace yazi::utility;
+
+#include "SocketHandler.h"
 using namespace yazi::socket;
-using namespace yazi::thread;
-using namespace yazi::task;
 
 EchoTask::EchoTask(Socket * socket) : Task(socket)
 {
@@ -74,26 +73,18 @@ void EchoTask::run()
         handler->remove(socket);
     }
 }
-
-void EchoTask::destroy()
-{
-    debug("echo task destory");
-    delete this;
-}
 ```
-## Define & Register the echo task creator
-server/Server.cpp
+## Task factory
+task/TaskFactory.cpp
 ```c++
-Task * echo_task_creator(Socket * socket)
+class TaskFactory
 {
-    return new EchoTask(socket);
-}
-
-// initialize the socket handler
-SocketHandler * socket_handler = Singleton<SocketHandler>::instance();
-
-// register the echo task creator
-socket_handler->creator(echo_task_creator);
+public:
+    static Task * create(Socket * socket)
+    {
+        return new EchoTask(socket);
+    }
+};
 ```
 ## Start the echo server
 ```c++
