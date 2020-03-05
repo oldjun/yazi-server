@@ -1,10 +1,11 @@
 #include "WorkerThread.h"
-#include "Logger.h"
-#include "ThreadPool.h"
-#include "Task.h"
-#include "Singleton.h"
 
+#include "Logger.h"
+#include "Singleton.h"
 using namespace yazi::utility;
+
+#include "Task.h"
+#include "ThreadPool.h"
 using namespace yazi::thread;
 
 WorkerThread::WorkerThread() : Thread()
@@ -47,7 +48,7 @@ void WorkerThread::run()
         rc = pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &old_state);
 
         m_task->run();
-        m_task->destroy();
+        delete m_task;
         m_task = NULL;
 
         Singleton<ThreadPool>::instance()->move_to_idle_list(this);

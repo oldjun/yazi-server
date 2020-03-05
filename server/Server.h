@@ -13,14 +13,15 @@ public:
     ~Server();
 
     void listen(const string & ip, int port);
-    void start(int threads = 1024, int connects = 1024);
+    void start();
+    void set_threads(int threads);
+    void set_connects(int connects);
 
 private:
-    void core_dump();
-    string get_root_path();
-
-private:
-    string m_root_path;
+    string m_ip;
+    int m_port;
+    int m_threads;
+    int m_connects;
 };
 
 }}

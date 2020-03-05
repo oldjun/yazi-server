@@ -15,7 +15,6 @@ public:
     void set_data(void* data);
 
     virtual void run() = 0;
-    virtual void destroy() {};
 
 protected:
     void*       m_data;

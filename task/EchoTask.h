@@ -16,7 +16,6 @@ public:
     virtual ~EchoTask();
 
     virtual void run();
-    virtual void destroy();
 };
 
 }}
