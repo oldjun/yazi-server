@@ -38,3 +38,9 @@ void EchoTask::run()
         handler->remove(socket);
     }
 }
+
+void EchoTask::destroy()
+{
+    debug("echo task destroy");
+    delete this;
+}
